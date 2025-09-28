@@ -40,9 +40,12 @@
     glow
     gitFull
   ];
-  targets.darwin.defaults.NSGlobalDomain = {
-    InitialKeyRepeat = 15;
-    KeyRepeat = 2;
+
+  # 共通環境変数
+  home.sessionVariables = {
+    EDITOR = "vim";
   };
-  targets.darwin.linkApps.enable = true;
+
+  # フォント設定
+  fonts.fontconfig.enable = true;
 }
