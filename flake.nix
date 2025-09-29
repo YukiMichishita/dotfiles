@@ -12,6 +12,14 @@
     dotfiles-private = {
       url = "github:YukiMichishita/dotfiles-private?ref=main";
     };
+    plasma-manager = {
+      url = "github:nix-community/plasma-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
+    nixos-hardware = {
+      url = "github:NixOS/nixos-hardware/master";
+    };
   };
 
   outputs = inputs @ {
@@ -20,6 +28,8 @@
     nixpkgs,
     home-manager,
     dotfiles-private,
+    plasma-manager,
+    nixos-hardware,
     ...
   }: {
     # Build darwin flake using:
@@ -46,7 +56,7 @@
     nixosConfigurations."yuki" = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = {
-        inherit dotfiles-private;
+        inherit inputs;
       };
       modules = [
         ./hosts/yuki.nix
@@ -54,11 +64,31 @@
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
+          home-manager.backupFileExtension = "bkup";
           home-manager.extraSpecialArgs = {
             inherit dotfiles-private;
           };
+          home-manager.sharedModules = [
+            plasma-manager.homeModules.plasma-manager
+          ];
         }
       ];
     };
+
+    devShells.x86_64-linux.default = with import nixpkgs {system = "x86_64-linux";};
+      mkShell {
+        packages = [
+          gh
+          nixos-rebuild
+          git
+          (writeShellApplication {
+            name = "rebuild";
+            runtimeInputs = [gh nixos-rebuild];
+            text = ''
+              sudo env "NIX_CONFIG=access-tokens = github.com=$(gh auth token)"   nixos-rebuild switch --flake .#yuki
+            '';
+          })
+        ];
+      };
   };
 }

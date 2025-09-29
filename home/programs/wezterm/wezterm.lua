@@ -7,7 +7,6 @@ config.use_ime = true
 config.window_background_opacity = 0.75
 config.macos_window_background_blur = 20
 
--- Nerd Font を第一候補、万一のフォールバックも指定
 config.font = wezterm.font_with_fallback({
 	"JetBrainsMono Nerd Font",
 	"Symbols Nerd Font",
@@ -75,9 +74,17 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
 	}
 end)
 
--- 見え方の調整（任意だが分かりやすくなる）
-config.underline_thickness = "1px" -- 既定でもOK。薄いなら太くする（例: "2px"）
-config.underline_position = "-2px" -- 波線が文字に埋もれる時に下げる（好みで調整
+config.underline_thickness = "1px"
+config.underline_position = "-2px"
 config.term = "wezterm"
+config.use_ime = true
+
+-- config.keys = {
+--     {
+--         key = ''
+--         mod = ''
+--         action = wezterm.action.
+--     }
+-- }
 
 return config

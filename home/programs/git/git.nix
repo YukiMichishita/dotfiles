@@ -33,4 +33,16 @@
       pager.show = false;
     };
   };
+
+  # 共通GitHub CLI設定
+  programs.gh = {
+    enable = true;
+    settings = {
+      aliases = {};
+      editor = "";
+      git_protocol = "ssh";
+      prompt = "enabled";
+      version = "1";
+    };
+  };
 }
