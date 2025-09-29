@@ -5,7 +5,7 @@
   ...
 }: {
   imports = [
-    ../platforms/darwin-common.nix
+    ../platforms/darwin/darwin-common.nix
   ];
 
   system.primaryUser = primaryUserName;
