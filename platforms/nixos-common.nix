@@ -172,7 +172,7 @@
           )
 
           (deflayer base
-            tab  q w e r t y u i o p bspc
+            _  q w e r t y u i o p _
             _
               (tap-hold-release 200 250 a lalt)
               (tap-hold-release 200 250 s lmet)
@@ -188,7 +188,7 @@
             C-spc
             (tap-hold 200 200 spc (layer-toggle raise))
             (tap-hold 200 200 spc (layer-toggle util))
-            rsft
+            lmet
             (tap-hold 200 200 ret (layer-toggle lower))
             bspc
           )
