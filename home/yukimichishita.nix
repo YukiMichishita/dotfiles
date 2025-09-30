@@ -1,7 +1,7 @@
 {
   pkgs,
   lib,
-  # dotfiles-private,
+  dotfiles-private,
   ...
 }: let
   headUpDaisy = pkgs.runCommand "headup-daisy-font" {} ''
@@ -53,5 +53,4 @@ in {
       menu.family = "x14y24pxHeadUpDaisy";
     };
   };
-  overrideConfig = true;
 }
