@@ -3,7 +3,27 @@
   lib,
   dotfiles-private,
   ...
-}: {
+}: let
+  hsInit = ''
+    local targets = { "Logitech", "Keychron", "HHKB" } -- 製品名の一部でOK
+    local function sh(cmd, args)
+      hs.task.new(cmd, nil, args):start()
+    end
+    hs.usb.watcher.new(function(e)
+      if e.eventType == "added" then
+        for _,pat in ipairs(targets) do
+          if (e.productName or ""):match(pat) then
+            -- Karabiner を軽くリロード（プロファイル再選択）
+            sh("/Library/Karabiner-Elements/bin/karabiner_cli", {"--select-profile","Default"})
+            -- Kanata(LaunchAgent)を掴み直す
+            sh("/bin/launchctl", {"kickstart","-k","gui/"..hs.host.uid().."/dev.yuki.kanata"})
+            break
+          end
+        end
+      end
+    end):start()
+  '';
+in {
   imports = [./common.nix];
 
   home.username = "mitchy";
@@ -53,6 +73,8 @@
     KeyRepeat = 2;
   };
   targets.darwin.linkApps.enable = true;
+
+  home.file.".hammerspoon/init.lua".text = hsInit;
 
   home.file.".config/kanata/kanata.kbd".text = ''
     (defsrc

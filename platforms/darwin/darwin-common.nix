@@ -45,6 +45,7 @@
       "docker"
       "discord"
       "karabiner-elements"
+      "hammerspoon"
     ];
   };
 

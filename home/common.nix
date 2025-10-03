@@ -20,6 +20,7 @@
   home.packages = with pkgs; [
     gcc
     lldb
+    libcxx
     cmake
     terraform
     nerd-fonts.jetbrains-mono

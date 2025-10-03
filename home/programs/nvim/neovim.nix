@@ -89,6 +89,9 @@ in {
       nvim-dbee
       vimade
       vim-mustache-handlebars
+      vim-test
+      nvim-nio
+      neotest
     ];
 
     extraPackages = [
