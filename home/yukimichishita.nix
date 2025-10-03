@@ -23,6 +23,7 @@ in {
     gh
     git-lfs
     headUpDaisy
+    discord
   ];
 
   programs.git = {

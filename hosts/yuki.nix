@@ -6,8 +6,8 @@
 }: {
   imports = [
     ../platforms/nixos/nixos-common.nix
-    ../platforms/nixos-common.nix
-    ../platforms/hardware-gpdpocket4.nix
+    ../platforms/nixos/nixos-common.nix
+    ../platforms/nixos/hardware-gpdpocket4.nix
   ];
 
   # ホスト名設定
