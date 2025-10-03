@@ -19,6 +19,7 @@
 
   home.packages = with pkgs; [
     gcc
+    gnumake
     lldb
     libcxx
     cmake

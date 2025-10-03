@@ -2,11 +2,16 @@
   config,
   lib,
   pkgs,
+  inputs,
   ...
 }: {
-  imports = [
-    ./hardware-nixos.nix
-  ];
+  imports =
+    [
+      ./hardware-nixos.nix
+    ]
+    ++ [
+      inputs.xremap.nixosModules.default
+    ];
   # ブートローダー設定
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -106,7 +111,7 @@
   users.users.yukimichishita = {
     isNormalUser = true;
     description = "Yuki Michishita";
-    extraGroups = ["networkmanager" "wheel"];
+    extraGroups = ["networkmanager" "wheel" "input"];
   };
 
   # その他のサービス
@@ -223,6 +228,25 @@
       fcitx5-mozc
       fcitx5-gtk
     ];
+  };
+
+  # xremap service configuration
+  services.xremap = {
+    withWlroots = true;
+    config = {
+      keymap = [
+        {
+          name = "Firefox";
+          application = {
+            only = ["firefox"];
+          };
+          remap = {
+            "M-Shift-LEFTBRACE" = "M-PAGEUP";
+            "M-Shift-RIGHTBRACE" = "M-PAGEDOWN";
+          };
+        }
+      ];
+    };
   };
 
   system.stateVersion = "24.05";
