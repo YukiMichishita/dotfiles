@@ -12,6 +12,7 @@ dap.listeners.before.event_exited["dapui"] = function()
 	dapui.close()
 end
 
+require("dap-go").setup()
 dap.adapters.delve = {
 	type = "server",
 	port = "${port}",
@@ -132,3 +133,4 @@ end, {
 		return { "python", "go" }
 	end,
 })
+

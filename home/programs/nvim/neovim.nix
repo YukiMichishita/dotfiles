@@ -77,6 +77,7 @@ in {
       gitsigns-nvim
       nvim-hlslens
       nvim-dap
+      nvim-dap-go
       nvim-dap-ui
       nvim-dap-virtual-text
       claudecode-nvim

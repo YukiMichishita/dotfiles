@@ -2,8 +2,8 @@ local map = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
 -- LSP navigation
-map("n", "<F12>", "<cmd>Telescope lsp_definitions<CR>", opts)
-map("n", "<F24>", "<cmd>Telescope lsp_implementations<CR>", opts)
+map("n", "<F12>", "<cmd>Telescope lsp_definitions<CR>", { noremap = true, silent = true, desc = "Go to definition" })
+map("n", "<F24>", "<cmd>Telescope lsp_implementations<CR>", { noremap = true, silent = true, desc = "Go to implementation" })
 map("n", "<leader>r", "<cmd>Telescope lsp_references<CR>", { desc = "Find usages", noremap = true, silent = true })
 map("n", "<leader>h", vim.lsp.buf.hover, { desc = "LSP Hover (type/signature/docs)" })
 

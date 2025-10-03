@@ -7,11 +7,16 @@ map("n", "<leader>df", "<cmd>DiffviewOpen<CR>", { desc = "Diffview open" })
 map("n", "<leader>e", "<cmd>Neotree toggle<CR>", { desc = "NeoTree toggle" })
 map("n", "<leader><C-e>", "<cmd>Neotree reveal_force_cwd<CR>", { desc = "NeoTree reveal & set root" })
 map("n", "<leader>o", ":Neotree float buffers<CR>", { desc = "NeoTree buffer toggle", nowait = true })
-map("n", "gd", ":Neotree float reveal_file=<cfile>")
+map("n", "gd", ":Neotree float reveal_file=<cfile>", { desc = "NeoTree reveal file under cursor" })
 
 -- Telescope
 map("n", "<leader>p", "<cmd>Telescope find_files<CR>", { desc = "Find files" })
-map("n", "<leader>P", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>")
+map(
+	"n",
+	"<leader>P",
+	":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>",
+	{ desc = "Live grep with args" }
+)
 
 -- fzf
 map("n", "<leader><C-p>", function()
@@ -91,6 +96,14 @@ map("n", "<leader>st", function()
 	S.scratch.open({ ft = "text", new = true })
 end, { desc = "Scratch: new (text)" })
 
+map("n", "<leader>sC", function()
+	Snacks.picker.commands()
+end, { desc = "Snack Picker : Commands" })
+
+map("n", "<leader>sk", function()
+	Snacks.picker.keymaps()
+end, { desc = "Snack Picker : Keymaps" })
+
 -- Markdown
 map("n", "<leader>mp", "<cmd>Glow<CR>", { desc = "Markdown Preview" })
 
@@ -115,31 +128,31 @@ end
 -- neo test
 map("n", "<leader>tf", function()
 	require("neotest").run.run(vim.fn.expand("%"))
-end)
+end, { desc = "Test: run current file" })
 map("n", "<leader>tc", function()
-	require("neotest").run.run(vim.fn.getcwd())
-end)
+	require("neotest").run.run(vim.fn.expand("%:p:h"))
+end, { desc = "Test: run all in cwd" })
 map("n", "<leader>ts", function()
 	require("neotest").summary.toggle()
-end)
+end, { desc = "Test: toggle summary" })
 map("n", "<leader>to", function()
 	require("neotest").output.open({ enter = true, auto_close = true })
-end)
+end, { desc = "Test: open output" })
 map("n", "<leader>tw", function()
 	require("neotest").watch.toggle(vim.fn.expand("%"))
-end)
+end, { desc = "Test: toggle watch" })
 map("n", "]t", function()
 	require("neotest").jump.next({ status = "failed" })
-end)
+end, { desc = "Test: next failed" })
 map("n", "[t", function()
 	require("neotest").jump.prev({ status = "failed" })
-end)
+end, { desc = "Test: previous failed" })
 map("n", "<leader>tS", function()
 	require("neotest").run.stop()
-end)
+end, { desc = "Test: stop running" })
 map("n", "<leader>tR", function()
 	require("neotest").run.run_last()
-end)
+end, { desc = "Test: run last" })
 vim.keymap.set("n", "<leader>td", function()
 	require("neotest").run.run({ strategy = "dap" })
 end, { desc = "neotest: debug nearest" })
