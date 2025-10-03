@@ -13,6 +13,11 @@ map("n", "gd", ":Neotree float reveal_file=<cfile>")
 map("n", "<leader>p", "<cmd>Telescope find_files<CR>", { desc = "Find files" })
 map("n", "<leader>P", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>")
 
+-- fzf
+map("n", "<leader><C-p>", function()
+	require("fzf-lua").builtin()
+end, { desc = "Command palette (fzf-lua builtin)" })
+
 -- Git blame
 map("n", "<leader>gb", ":Git blame<CR>", { desc = "Git: blame file" })
 
@@ -107,3 +112,34 @@ for i = 1, 5 do
 	end, { desc = "Harpoon: Go to file " .. i })
 end
 
+-- neo test
+map("n", "<leader>tf", function()
+	require("neotest").run.run(vim.fn.expand("%"))
+end)
+map("n", "<leader>tc", function()
+	require("neotest").run.run(vim.fn.getcwd())
+end)
+map("n", "<leader>ts", function()
+	require("neotest").summary.toggle()
+end)
+map("n", "<leader>to", function()
+	require("neotest").output.open({ enter = true, auto_close = true })
+end)
+map("n", "<leader>tw", function()
+	require("neotest").watch.toggle(vim.fn.expand("%"))
+end)
+map("n", "]t", function()
+	require("neotest").jump.next({ status = "failed" })
+end)
+map("n", "[t", function()
+	require("neotest").jump.prev({ status = "failed" })
+end)
+map("n", "<leader>tS", function()
+	require("neotest").run.stop()
+end)
+map("n", "<leader>tR", function()
+	require("neotest").run.run_last()
+end)
+vim.keymap.set("n", "<leader>td", function()
+	require("neotest").run.run({ strategy = "dap" })
+end, { desc = "neotest: debug nearest" })

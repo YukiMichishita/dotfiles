@@ -92,6 +92,10 @@ in {
       vim-test
       nvim-nio
       neotest
+      neotest-go
+      neotest-python
+      neotest-jest
+      fzf-lua
     ];
 
     extraPackages = [

@@ -92,22 +92,22 @@ in {
     (deflayer base
       _  q w e r t y u i o p _
       _
-        (tap-hold-release 200 250 a lalt)
-        (tap-hold-release 200 250 s lmet)
-        (tap-hold-release 200 250 d lctl)
-        (tap-hold-release 200 250 f lsft)
+        (tap-hold-release 50 200 a lalt)
+        (tap-hold-release 50 200 s lmet)
+        (tap-hold-release 50 200 d lctl)
+        (tap-hold-release  1 200 f lsft)
         g h
-        (tap-hold-release 200 250 j lsft)
-        (tap-hold-release 200 250 k lctl)
-        (tap-hold-release 200 250 l lmet)
-        (tap-hold-release 200 250 ; lalt)
+        (tap-hold-release 50 200 j lsft)
+        (tap-hold-release 50 200 k lctl)
+        (tap-hold-release 50 200 l lmet)
+        (tap-hold-release 50 200 ; lalt)
       '
       _ z x c v b n m , . / _
       C-spc
-      (tap-hold 200 200 spc (layer-toggle raise))
-      (tap-hold 200 200 spc (layer-toggle util))
+      (tap-hold 50 200 spc (layer-toggle raise))
+      (tap-hold 50 200 spc (layer-toggle util))
       lmet
-      (tap-hold 200 200 ret (layer-toggle lower))
+      (tap-hold 50 200 ret (layer-toggle lower))
       bspc
     )
 

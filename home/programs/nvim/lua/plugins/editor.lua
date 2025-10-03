@@ -69,3 +69,47 @@ require("conform").setup({
 		nix = { "alejandra" },
 	},
 })
+
+-- neotest
+require("neotest").setup({
+	adapters = {
+		require("neotest-go")({
+			experimental = {
+				test_table = true,
+			},
+			args = { "-count=1", "-timeout=60s" },
+		}),
+		recursive_run = true,
+	},
+
+	require("neotest-python")({
+		-- venv 自動検出（.venv/venv を優先）
+		python = function()
+			local cwd = vim.fn.getcwd()
+			for _, p in ipairs({ "/.venv/bin/python", "/venv/bin/python" }) do
+				if vim.fn.executable(cwd .. p) == 1 then
+					return cwd .. p
+				end
+			end
+			return "python3"
+		end,
+		args = { "-q" },
+		runner = "pytest",
+	}),
+
+	require("neotest-jest")({
+		jestCommand = "npm test --", -- pnpm/yarn なら置換
+		env = { CI = "1" },
+		cwd = function(_)
+			return vim.fn.getcwd()
+		end,
+		jestConfigFile = function()
+			for _, f in ipairs({ "jest.config.ts", "jest.config.js" }) do
+				if vim.fn.filereadable(f) == 1 then
+					return f
+				end
+			end
+		end,
+	}),
+})
+
