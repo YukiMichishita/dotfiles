@@ -56,8 +56,8 @@ in {
       #     output = "json";
       #   };
       # }
+      dotfiles-private.aws.privateProfiles.common
       dotfiles-private.aws.privateProfiles.dws
-      dotfiles-private.aws.privateProfiles.pxdt
     ];
   };
 
@@ -78,5 +78,6 @@ in {
 
   home.file.".config/kanata/kanata.kbd".text = let
     sharedKeymap = import ../shared/kanata-keymap.nix;
-  in sharedKeymap.kanataKeymap;
+  in
+    sharedKeymap.kanataKeymap;
 }

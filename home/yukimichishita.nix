@@ -26,6 +26,19 @@ in {
     discord
   ];
 
+  programs.awscli = {
+    enable = true;
+    settings = lib.mkMerge [
+      # {
+      #   "default" = {
+      #     region = "ap-northeast-1";
+      #     output = "json";
+      #   };
+      # }
+      dotfiles-private.aws.privateProfiles.common
+    ];
+  };
+
   programs.git = {
     userEmail = "michishita.ocu@gmail.com";
   };
@@ -45,13 +58,6 @@ in {
   fonts.fontconfig.enable = true;
   programs.plasma = {
     fonts = {
-      general.family = "x14y24pxHeadUpDaisy";
-      general.pointSize = 12;
-      fixedWidth.family = "x14y24pxHeadUpDaisy";
-      fixedWidth.pointSize = 12;
-      small.family = "x14y24pxHeadUpDaisy";
-      toolbar.family = "x14y24pxHeadUpDaisy";
-      menu.family = "x14y24pxHeadUpDaisy";
     };
   };
 }

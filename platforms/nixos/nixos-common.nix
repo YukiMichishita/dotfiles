@@ -65,6 +65,25 @@
   # Desktop Manager
   services.desktopManager.plasma6.enable = true;
 
+  # フォント設定
+  fonts = {
+    packages = with pkgs; [
+      mplus-outline-fonts.githubRelease
+      noto-fonts
+      noto-fonts-cjk-sans
+      noto-fonts-cjk-serif
+      noto-fonts-emoji
+    ];
+    fontconfig = {
+      defaultFonts = {
+        serif = ["M+ 1mn" "Noto Serif CJK JP"];
+        sansSerif = ["M+ 1mn" "Noto Sans CJK JP"];
+        monospace = ["M+ 1mn" "Noto Sans Mono CJK JP"];
+        emoji = ["Noto Color Emoji"];
+      };
+    };
+  };
+
   # システムパッケージ
   environment.systemPackages = with pkgs; [
     vim
@@ -112,7 +131,11 @@
     isNormalUser = true;
     description = "Yuki Michishita";
     extraGroups = ["networkmanager" "wheel" "input"];
+    shell = pkgs.zsh;
   };
+
+  # zshをシステムで有効化
+  programs.zsh.enable = true;
 
   # その他のサービス
   services.udisks2.enable = true;
@@ -233,6 +256,7 @@
   # xremap service configuration
   services.xremap = {
     withWlroots = true;
+    enable = false;
     config = {
       keymap = [
         {
