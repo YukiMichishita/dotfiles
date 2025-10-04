@@ -6,18 +6,22 @@
   programs.zsh = {
     enable = true;
     enableCompletion = true; # compinit は HM がやってくれる
+    completionInit = "autoload -Uz compinit && compinit -C"; # -Cで高速化
     oh-my-zsh = {
       enable = true;
       plugins = ["git"];
     };
 
-    # ここで“compinit の前”に実行したい処理を書く
+    # ここで"compinit の前"に実行したい処理を書く
     initContent = let
       zshConfigEarlyInit =
         lib.mkOrder
         550
         ''
           source ${pkgs.git}/share/git/contrib/completion/git-prompt.sh
+
+          # oh-my-zshのcompinit実行をスキップ（高速化）
+          skip_global_compinit=1
         '';
 
       zshConfig =
@@ -28,7 +32,6 @@
           alias k="clear"
           fpath=(~/.zsh $fpath)
           zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
-          autoload -Uz compinit && compinit
 
           export GOPATH="$(${pkgs.go}/bin/go env GOPATH)"
           export PATH="$PATH:$GOPATH/bin:$GOPATH"
