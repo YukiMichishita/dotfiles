@@ -17,6 +17,7 @@ map("n", "<M-k>", "<C-w>-", { desc = "Resize window up" })
 map("n", "<C-,>", ":BufSurfBack<CR>", { noremap = true, desc = "Buffer surf back" })
 map("n", "<C-.>", ":BufSurfForward<CR>", { noremap = true, desc = "Buffer surf forward" })
 map("n", "<leader>w", "<cmd>bd<CR>", { desc = "Close buffer" })
+map("n", "<leader>W", "<cmd>bd!<CR>", { desc = "Force close buffer" })
 
 -- Terminal
 map("n", "<leader>t", ":terminal<CR>", { noremap = true, nowait = true, desc = "Open terminal" })
