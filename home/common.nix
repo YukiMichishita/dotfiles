@@ -12,7 +12,6 @@
     ./programs/python/python.nix
     ./programs/git/git.nix
     ./programs/zsh.nix
-    ./programs/ssh.nix
   ];
   home.stateVersion = "25.05";
   programs.home-manager.enable = true;

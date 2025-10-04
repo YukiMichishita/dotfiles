@@ -107,6 +107,9 @@ end, { desc = "Snack Picker : Keymaps" })
 -- Markdown
 map("n", "<leader>mp", "<cmd>Glow<CR>", { desc = "Markdown Preview" })
 
+-- Tagbar
+map("n", "<leader>tb", "<cmd>TagbarToggle<CR>", { desc = "Tagbar: toggle" })
+
 -- Harpoon
 local harpoon = require("harpoon")
 
