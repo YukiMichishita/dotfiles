@@ -105,5 +105,27 @@
           })
         ];
       };
+
+    devShells.aarch64-darwin.default = with import nixpkgs {system = "aarch64-darwin";};
+      mkShell {
+        packages = [
+          gh
+          git
+          (writeShellApplication {
+            name = "rebuild";
+            runtimeInputs = [gh];
+            text = ''
+              sudo env "NIX_CONFIG=access-tokens = github.com=$(gh auth token)" darwin-rebuild switch --flake .#YukiMichishitanoMacBook-Air
+            '';
+          })
+          (writeShellApplication {
+            name = "update";
+            runtimeInputs = [gh];
+            text = ''
+              env "NIX_CONFIG=access-tokens = github.com=$(gh auth token)" nix flake update
+            '';
+          })
+        ];
+      };
   };
 }

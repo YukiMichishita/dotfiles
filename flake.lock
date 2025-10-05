@@ -107,7 +107,8 @@
       "original": {
         "owner": "nix-community",
         "repo": "fenix",
-      },
+        "type": "github"
+      }
     },
     "flake-compat": {
       "flake": false,
