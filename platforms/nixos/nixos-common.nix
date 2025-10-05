@@ -2,11 +2,16 @@
   config,
   lib,
   pkgs,
+  inputs,
   ...
 }: {
-  imports = [
-    ./hardware-nixos.nix
-  ];
+  imports =
+    [
+      ./hardware-nixos.nix
+    ]
+    ++ [
+      inputs.xremap.nixosModules.default
+    ];
   # ブートローダー設定
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -60,6 +65,25 @@
   # Desktop Manager
   services.desktopManager.plasma6.enable = true;
 
+  # フォント設定
+  fonts = {
+    packages = with pkgs; [
+      mplus-outline-fonts.githubRelease
+      noto-fonts
+      noto-fonts-cjk-sans
+      noto-fonts-cjk-serif
+      noto-fonts-emoji
+    ];
+    fontconfig = {
+      defaultFonts = {
+        serif = ["M+ 1mn" "Noto Serif CJK JP"];
+        sansSerif = ["M+ 1mn" "Noto Sans CJK JP"];
+        monospace = ["M+ 1mn" "Noto Sans Mono CJK JP"];
+        emoji = ["Noto Color Emoji"];
+      };
+    };
+  };
+
   # システムパッケージ
   environment.systemPackages = with pkgs; [
     vim
@@ -106,8 +130,12 @@
   users.users.yukimichishita = {
     isNormalUser = true;
     description = "Yuki Michishita";
-    extraGroups = ["networkmanager" "wheel"];
+    extraGroups = ["networkmanager" "wheel" "input"];
+    shell = pkgs.zsh;
   };
+
+  # zshをシステムで有効化
+  programs.zsh.enable = true;
 
   # その他のサービス
   services.udisks2.enable = true;
@@ -145,7 +173,9 @@
   nixpkgs.config.allowUnfree = true;
 
   # kanata keyboard configuration
-  services.kanata = {
+  services.kanata = let
+    sharedKeymap = import ../../shared/kanata-keymap.nix;
+  in {
     enable = true;
     package = pkgs.kanata-with-cmd;
 
@@ -158,62 +188,7 @@
           process-unmapped-keys yes
           danger-enable-cmd yes
         '';
-        config = ''
-          (defsrc
-            tab  q w e r t y u i o p bspc
-            lctl a s d f g h j k l ; '
-            lsft z x c v b n m , . / esc
-               lmet caps spc ret del rmet
-          )
-
-          (defalias
-              JP_ON_CMD  C-spc
-              EN_CMD     C-spc
-          )
-
-          (deflayer base
-            _  q w e r t y u i o p _
-            _
-              (tap-hold-release 200 250 a lalt)
-              (tap-hold-release 200 250 s lmet)
-              (tap-hold-release 200 250 d lctl)
-              (tap-hold-release 200 250 f lsft)
-              g h
-              (tap-hold-release 200 250 j lsft)
-              (tap-hold-release 200 250 k lctl)
-              (tap-hold-release 200 250 l lmet)
-              (tap-hold-release 200 250 ; lalt)
-            '
-            _ z x c v b n m , . / _
-            C-spc
-            (tap-hold 200 200 spc (layer-toggle raise))
-            (tap-hold 200 200 spc (layer-toggle util))
-            lmet
-            (tap-hold 200 200 ret (layer-toggle lower))
-            bspc
-          )
-
-          (deflayer lower
-            _ f1 f2 f3 f4 f5 f6 f7 f8 f9 f10 f11
-            _ _ _ _ _ _ _ _ _ _ f12 _
-            _ _ _ _ _ _ _ _ _ _ _ _
-                _ esc _ _ _ _
-          )
-
-          (deflayer raise
-            _ 1 2 3 4 5   6    7    8  9   0 _
-            _ _ _ _ _ tab left down up right - =
-            _ _ _ _ _ _ _ _ [ ] bksl `
-                _ _ _ _ _ _
-          )
-
-          (deflayer util
-            _ 1 2 3 4 5   6    7    8  9     0 _
-            _ M-a _ _ _ _ home down up end _ _
-            _ M-z M-x M-c M-v _ _ _ pgup pgdn _ _
-                _ _ _ _ _ _
-          )
-        '';
+        config = sharedKeymap.kanataKeymap;
       };
 
       "internalKeyboard" = {
@@ -271,11 +246,31 @@
 
   # 入力メソッド設定 (fcitx5)
   i18n.inputMethod = {
-    enabled = "fcitx5";
+    type = "fcitx5";
     fcitx5.addons = with pkgs; [
       fcitx5-mozc
       fcitx5-gtk
     ];
+  };
+
+  # xremap service configuration
+  services.xremap = {
+    withWlroots = true;
+    enable = false;
+    config = {
+      keymap = [
+        {
+          name = "Firefox";
+          application = {
+            only = ["firefox"];
+          };
+          remap = {
+            "M-Shift-LEFTBRACE" = "M-PAGEUP";
+            "M-Shift-RIGHTBRACE" = "M-PAGEDOWN";
+          };
+        }
+      ];
+    };
   };
 
   system.stateVersion = "24.05";

@@ -119,3 +119,9 @@ require("vimade").setup({
 	basebg = "",
 	tint = { fg = { rgb = { 0, 200, 0 }, intensity = 0.3 } },
 })
+
+require("treesitter-context").setup({
+	enable = true,
+	max_lines = 3,
+	trim_scope = "outer",
+})

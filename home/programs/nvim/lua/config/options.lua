@@ -3,6 +3,7 @@ vim.opt.autoread = true
 vim.opt.number = true
 vim.opt.cursorline = true
 vim.opt.winbar = "%=%m %f"
+vim.opt.shell = "zsh"
 vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#FFD700", bold = true })
 vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold" }, {
 	command = "checktime",

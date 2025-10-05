@@ -24,6 +24,9 @@
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    xremap = {
+      url = "github:xremap/nix-flake";
+    };
   };
 
   outputs = inputs @ {
@@ -91,6 +94,13 @@
             runtimeInputs = [gh nixos-rebuild];
             text = ''
               sudo env "NIX_CONFIG=access-tokens = github.com=$(gh auth token)"   nixos-rebuild switch --flake .#yuki
+            '';
+          })
+          (writeShellApplication {
+            name = "update";
+            runtimeInputs = [gh nixos-rebuild];
+            text = ''
+              sudo env "NIX_CONFIG=access-tokens = github.com=$(gh auth token)" nix flake update
             '';
           })
         ];

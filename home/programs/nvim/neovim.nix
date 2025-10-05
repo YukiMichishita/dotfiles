@@ -97,6 +97,8 @@ in {
       neotest-python
       neotest-jest
       fzf-lua
+      tagbar
+      nvim-treesitter-context
     ];
 
     extraPackages = [
