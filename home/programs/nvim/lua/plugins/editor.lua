@@ -59,6 +59,7 @@ require("conform").setup({
 
 		go = { "gofumpt", "goimports" },
 		python = { "black" },
+		rust = { "rustfmt" },
 
 		javascript = { "prettier" },
 		typescript = { "prettier" },

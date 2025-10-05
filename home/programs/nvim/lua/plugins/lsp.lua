@@ -70,12 +70,14 @@ require("lean").setup({})
 -- Rust
 lspconfig.rust_analyzer.setup({
 	capabilities = require("cmp_nvim_lsp").default_capabilities(),
+	cmd = { "rust-analyzer" },
 	settings = {
 		["rust-analyzer"] = {
 			cargo = { allFeatures = true },
 			checkOnSave = { command = "clippy" },
 		},
 	},
+	on_attach = on_attach,
 })
 
 -- SQL

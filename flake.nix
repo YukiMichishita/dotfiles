@@ -20,6 +20,10 @@
     nixos-hardware = {
       url = "github:NixOS/nixos-hardware/master";
     };
+    fenix = {
+      url = "github:nix-community/fenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs @ {
@@ -30,6 +34,7 @@
     dotfiles-private,
     plasma-manager,
     nixos-hardware,
+    fenix,
     ...
   }: {
     # Build darwin flake using:
@@ -37,7 +42,7 @@
     darwinConfigurations."YukiMichishitanoMacBook-Air" = nix-darwin.lib.darwinSystem {
       specialArgs = {
         primaryUserName = "mitchy";
-        inherit dotfiles-private;
+        inherit dotfiles-private fenix;
       };
       modules = [
         ./hosts/dws.nix
@@ -47,7 +52,7 @@
           home-manager.useUserPackages = true;
           home-manager.extraSpecialArgs = {
             primaryUserName = "mitchy";
-            inherit dotfiles-private;
+            inherit dotfiles-private fenix;
           };
         }
       ];

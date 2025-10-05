@@ -102,9 +102,6 @@ in {
     extraPackages = [
       pkgs.pyright
       pkgs.gopls
-      pkgs.rust-analyzer
-      pkgs.cargo
-      pkgs.rustc
       pkgs.sqls
       pkgs.nil # Nix LSP
       pkgs.lua-language-server

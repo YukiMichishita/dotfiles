@@ -3,8 +3,14 @@
   lib,
   pkgs,
   dotfiles-private,
+  fenix,
   ...
-}: {
+}: let
+  rust-toolchain = fenix.packages.${pkgs.system}.fromToolchainFile {
+    file = ./rust-toolchain.toml;
+    sha256 = "sha256-SJwZ8g0zF2WrKDVmHrVG3pD2RGoQeo24MEXnNx5FyuI=";
+  };
+in {
   imports = [
     ./programs/nvim/neovim.nix
     ./programs/awscli/awscli.nix
@@ -31,6 +37,9 @@
     gopls
     gofumpt
     delve
+
+    # Rust development tools
+    rust-toolchain
     nodejs_24
     nodePackages.prettier
     stylua
@@ -40,6 +49,7 @@
     ripgrep
     glow
     gitFull
+    qemu
   ];
 
   # 共通環境変数
