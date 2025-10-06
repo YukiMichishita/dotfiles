@@ -246,6 +246,7 @@
 
   # 入力メソッド設定 (fcitx5)
   i18n.inputMethod = {
+    enable = true;
     type = "fcitx5";
     fcitx5.addons = with pkgs; [
       fcitx5-mozc
