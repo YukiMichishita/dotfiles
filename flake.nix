@@ -20,6 +20,10 @@
     nixos-hardware = {
       url = "github:NixOS/nixos-hardware/master";
     };
+    fenix = {
+      url = "github:nix-community/fenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     xremap = {
       url = "github:xremap/nix-flake";
     };
@@ -33,6 +37,7 @@
     dotfiles-private,
     plasma-manager,
     nixos-hardware,
+    fenix,
     ...
   }: {
     # Build darwin flake using:
@@ -40,7 +45,7 @@
     darwinConfigurations."YukiMichishitanoMacBook-Air" = nix-darwin.lib.darwinSystem {
       specialArgs = {
         primaryUserName = "mitchy";
-        inherit dotfiles-private;
+        inherit dotfiles-private fenix;
       };
       modules = [
         ./hosts/dws.nix
@@ -50,7 +55,7 @@
           home-manager.useUserPackages = true;
           home-manager.extraSpecialArgs = {
             primaryUserName = "mitchy";
-            inherit dotfiles-private;
+            inherit dotfiles-private fenix;
           };
         }
       ];
@@ -96,6 +101,28 @@
             runtimeInputs = [gh nixos-rebuild];
             text = ''
               sudo env "NIX_CONFIG=access-tokens = github.com=$(gh auth token)" nix flake update
+            '';
+          })
+        ];
+      };
+
+    devShells.aarch64-darwin.default = with import nixpkgs {system = "aarch64-darwin";};
+      mkShell {
+        packages = [
+          gh
+          git
+          (writeShellApplication {
+            name = "rebuild";
+            runtimeInputs = [gh];
+            text = ''
+              sudo env "NIX_CONFIG=access-tokens = github.com=$(gh auth token)" darwin-rebuild switch --flake .#YukiMichishitanoMacBook-Air
+            '';
+          })
+          (writeShellApplication {
+            name = "update";
+            runtimeInputs = [gh];
+            text = ''
+              env "NIX_CONFIG=access-tokens = github.com=$(gh auth token)" nix flake update
             '';
           })
         ];
