@@ -64,7 +64,7 @@
     nixosConfigurations."yuki" = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = {
-        inherit inputs;
+        inherit inputs fenix;
       };
       modules = [
         ./hosts/yuki.nix
@@ -74,7 +74,7 @@
           home-manager.useUserPackages = true;
           home-manager.backupFileExtension = "bkup";
           home-manager.extraSpecialArgs = {
-            inherit dotfiles-private;
+            inherit dotfiles-private fenix;
           };
           home-manager.sharedModules = [
             plasma-manager.homeModules.plasma-manager

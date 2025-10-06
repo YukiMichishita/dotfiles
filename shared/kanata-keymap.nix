@@ -31,8 +31,8 @@
       _ z x c v b n m , . / _
       C-spc
       (tap-hold 50 230 spc (layer-toggle raise))
-      (tap-hold 50 230 spc (layer-toggle util))
-      lmet
+      esc
+      rsft
       (tap-hold 50 230 ret (layer-toggle lower))
       bspc
     )
@@ -59,4 +59,3 @@
     )
   '';
 }
-
