@@ -42,7 +42,7 @@
       "maccy"
       "iterm2"
       "chatgpt"
-      "docker"
+      "docker-desktop"
       "discord"
       "karabiner-elements"
       "hammerspoon"
