@@ -32,7 +32,7 @@
       C-spc
       (tap-hold 50 230 spc (layer-toggle raise))
       esc
-      rsft
+      lsft
       (tap-hold 50 230 ret (layer-toggle lower))
       bspc
     )

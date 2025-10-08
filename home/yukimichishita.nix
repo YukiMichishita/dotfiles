@@ -24,6 +24,7 @@ in {
     git-lfs
     headUpDaisy
     discord
+    docker
   ];
 
   programs.awscli = {
@@ -36,6 +37,7 @@ in {
       #   };
       # }
       dotfiles-private.aws.privateProfiles.common
+      dotfiles-private.aws.privateProfiles.personal
     ];
   };
 
