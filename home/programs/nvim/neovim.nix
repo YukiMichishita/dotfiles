@@ -109,6 +109,7 @@ in {
       pkgs.lua-language-server
       pkgs.jdt-language-server
       dbee-backend
+      pkgs.ctags
     ];
   };
 

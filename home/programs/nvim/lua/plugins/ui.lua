@@ -122,6 +122,8 @@ require("vimade").setup({
 
 require("treesitter-context").setup({
 	enable = true,
-	max_lines = 3,
+	max_lines = 0, -- 0 = unlimited
 	trim_scope = "outer",
+	mode = "cursor",
+	separator = nil,
 })

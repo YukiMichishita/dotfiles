@@ -16,6 +16,7 @@ in {
     ./programs/awscli/awscli.nix
     ./programs/wezterm/wezterm.nix
     ./programs/python/python.nix
+    ./programs/chromium/chromium.nix
     ./programs/git/git.nix
     ./programs/zsh.nix
   ];

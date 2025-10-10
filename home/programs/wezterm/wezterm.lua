@@ -21,7 +21,7 @@ config.harfbuzz_features = {
 -- Tab
 ----------------------------------------------------
 -- タイトルバーを非表示
-config.window_decorations = "RESIZE"
+config.window_decorations = "TITLE | RESIZE"
 -- タブバーの表示
 config.show_tabs_in_tab_bar = true
 -- falseにするとタブバーの透過が効かなくなる
@@ -86,5 +86,36 @@ config.use_ime = true
 --         action = wezterm.action.
 --     }
 -- }
+
+-- カーソルを当てたときだけタイトルバーを出す
+function DisableWindowDecorations(window, interval)
+	if interval then
+		wezterm.sleep_ms(interval)
+	end
+
+	local overrides = window:get_config_overrides() or {}
+	overrides.window_decorations = nil
+	window:set_config_overrides(overrides)
+end
+
+wezterm.on("window-focus-changed", function(window, pane)
+	if window:is_focused() then
+		return
+	end
+
+	DisableWindowDecorations(window)
+end)
+
+local TITLE_BAR_DISPLAY_TIME = 3000
+
+wezterm.on("show-title-bar", function(window, pane)
+	local overrides = window:get_config_overrides() or {}
+
+	overrides.window_decorations = "TITLE | RESIZE"
+	window:set_config_overrides(overrides)
+
+	-- これも追加する
+	DisableWindowDecorations(window, TITLE_BAR_DISPLAY_TIME)
+end)
 
 return config
