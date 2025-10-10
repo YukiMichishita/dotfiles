@@ -25,6 +25,7 @@
     enable = true;
     onActivation = {
       autoUpdate = true;
+      cleanup = "zap";
     };
     brews = [
       "kanata"
