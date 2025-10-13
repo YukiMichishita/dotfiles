@@ -35,3 +35,6 @@ end, { desc = "Search word under cursor (backward)" })
 
 -- System
 map("n", "<leader>dr", "<cmd>!sudo darwin-rebuild switch<CR>", { desc = "Darwin rebuild switch" })
+
+-- save
+map("n", "<C-s>", "<cmd>update<CR>", { desc = "save" })
