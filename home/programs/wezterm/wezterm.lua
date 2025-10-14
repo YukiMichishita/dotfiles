@@ -21,7 +21,7 @@ config.harfbuzz_features = {
 -- Tab
 ----------------------------------------------------
 -- タイトルバーを非表示
-config.window_decorations = "TITLE | RESIZE"
+config.window_decorations = "RESIZE"
 -- タブバーの表示
 config.show_tabs_in_tab_bar = true
 -- falseにするとタブバーの透過が効かなくなる
