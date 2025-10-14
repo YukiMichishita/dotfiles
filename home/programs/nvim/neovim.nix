@@ -59,11 +59,12 @@ in {
         p.python
         p.go
         p.sql
+        p.haskell
+        p.fsharp
       ]))
       nvim-treesitter.withAllGrammars
       nvim-lspconfig
       mason-nvim
-      mason-lspconfig-nvim
       lean-nvim
       completion-nvim
       vscode-nvim
@@ -108,6 +109,8 @@ in {
       pkgs.nil # Nix LSP
       pkgs.lua-language-server
       pkgs.jdt-language-server
+      pkgs.haskell-language-server # Haskell LSP
+      pkgs.fsautocomplete # F# LSP
       dbee-backend
       pkgs.ctags
     ];

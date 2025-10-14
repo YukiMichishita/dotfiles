@@ -36,6 +36,21 @@
 
     # Rust development tools
     rustup
+    rust-toolchain
+
+    # Haskell development tools
+    ghc
+    cabal-install
+    stack
+    haskell-language-server
+    haskellPackages.hoogle
+    haskellPackages.hlint
+    haskellPackages.fourmolu
+
+    # F# development tools
+    dotnet-sdk_9
+    fsautocomplete
+    fantomas
     nodejs_24
     nodePackages.prettier
     stylua

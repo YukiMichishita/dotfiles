@@ -1,6 +1,4 @@
--- ここに LSP と補完を集約（フラット構成向け）
-local lspconfig = require("lspconfig")
-
+-- ここに LSP と補完を集約(フラット構成向け)
 local on_attach = function(client, bufnr)
 	-- documentHighlight に対応している場合のみ
 	if client.server_capabilities.documentHighlightProvider then
@@ -21,7 +19,6 @@ end
 
 -- mason
 require("mason").setup()
-require("mason-lspconfig").setup({})
 
 -- cmp
 local cmp = require("cmp")
@@ -37,11 +34,11 @@ cmp.setup({
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 -- Go
-lspconfig.gopls.setup({
-	capabilities = capabilities,
+vim.lsp.config.gopls = {
 	cmd = { "gopls" },
 	filetypes = { "go", "gomod", "gowork", "gotmpl" },
-	root_dir = require("lspconfig.util").root_pattern("go.work", "go.mod", ".git"),
+	root_markers = { "go.work", "go.mod", ".git" },
+	capabilities = capabilities,
 	settings = {
 		gopls = {
 			staticcheck = true,
@@ -50,27 +47,38 @@ lspconfig.gopls.setup({
 		},
 	},
 	on_attach = on_attach,
-})
+}
+vim.lsp.enable("gopls")
 
 -- Python
-lspconfig.pyright.setup({
+vim.lsp.config.pyright = {
+	cmd = { "pyright-langserver", "--stdio" },
+	filetypes = { "python" },
+	root_markers = { "pyproject.toml", "setup.py", "setup.cfg", "requirements.txt", "Pipfile", ".git" },
 	capabilities = capabilities,
 	on_attach = on_attach,
-})
+}
+vim.lsp.enable("pyright")
 
 -- C/C++
-lspconfig.clangd.setup({
+vim.lsp.config.clangd = {
+	cmd = { "clangd" },
+	filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
+	root_markers = { ".clangd", ".clang-tidy", ".clang-format", "compile_commands.json", "compile_flags.txt", "configure.ac", ".git" },
 	capabilities = capabilities,
 	on_attach = on_attach,
-})
+}
+vim.lsp.enable("clangd")
 
 -- Lean
 require("lean").setup({})
 
 -- Rust
-lspconfig.rust_analyzer.setup({
-	capabilities = require("cmp_nvim_lsp").default_capabilities(),
+vim.lsp.config.rust_analyzer = {
 	cmd = { "rust-analyzer" },
+	filetypes = { "rust" },
+	root_markers = { "Cargo.toml", "rust-project.json" },
+	capabilities = capabilities,
 	settings = {
 		["rust-analyzer"] = {
 			cargo = { allFeatures = true },
@@ -78,18 +86,25 @@ lspconfig.rust_analyzer.setup({
 		},
 	},
 	on_attach = on_attach,
-})
+}
+vim.lsp.enable("rust_analyzer")
 
 -- SQL
-lspconfig.sqls.setup({
+vim.lsp.config.sqls = {
+	cmd = { "sqls" },
+	filetypes = { "sql", "mysql" },
+	root_markers = { ".git" },
 	capabilities = capabilities,
 	on_attach = on_attach,
-})
+}
+vim.lsp.enable("sqls")
 
 -- Nix
-lspconfig.nil_ls.setup({
+vim.lsp.config.nil_ls = {
+	cmd = { "nil" },
+	filetypes = { "nix" },
+	root_markers = { "flake.nix", "default.nix", "shell.nix", ".git" },
 	capabilities = capabilities,
-	on_attach = on_attach,
 	settings = {
 		["nil"] = {
 			formatting = {
@@ -97,12 +112,16 @@ lspconfig.nil_ls.setup({
 			},
 		},
 	},
-})
+	on_attach = on_attach,
+}
+vim.lsp.enable("nil_ls")
 
 -- Lua
-lspconfig.lua_ls.setup({
+vim.lsp.config.lua_ls = {
+	cmd = { "lua-language-server" },
+	filetypes = { "lua" },
+	root_markers = { ".luarc.json", ".luarc.jsonc", ".luacheckrc", ".stylua.toml", "stylua.toml", "selene.toml", "selene.yml", ".git" },
 	capabilities = capabilities,
-	on_attach = on_attach,
 	settings = {
 		Lua = {
 			runtime = { version = "LuaJIT" },
@@ -114,13 +133,36 @@ lspconfig.lua_ls.setup({
 			telemetry = { enable = false },
 		},
 	},
-})
+	on_attach = on_attach,
+}
+vim.lsp.enable("lua_ls")
 
 -- Java
-lspconfig.jdtls.setup({
-	capabilities = capabilities,
-	on_attach = on_attach,
+vim.lsp.config.jdtls = {
 	cmd = { "jdtls" },
 	filetypes = { "java" },
-	root_dir = require("lspconfig.util").root_pattern(".git", "mvnw", "gradlew", "pom.xml", "build.gradle"),
-})
+	root_markers = { ".git", "mvnw", "gradlew", "pom.xml", "build.gradle" },
+	capabilities = capabilities,
+	on_attach = on_attach,
+}
+vim.lsp.enable("jdtls")
+
+-- Haskell
+vim.lsp.config.haskell_language_server = {
+	cmd = { "haskell-language-server-wrapper", "--lsp" },
+	filetypes = { "haskell", "lhaskell" },
+	root_markers = { "hie.yaml", "stack.yaml", "cabal.project", "*.cabal", "package.yaml" },
+	capabilities = capabilities,
+	on_attach = on_attach,
+}
+vim.lsp.enable("haskell_language_server")
+
+-- F#
+vim.lsp.config.fsautocomplete = {
+	cmd = { "fsautocomplete", "--background-service-enabled" },
+	filetypes = { "fsharp" },
+	root_markers = { "*.sln", "*.fsproj", ".git" },
+	capabilities = capabilities,
+	on_attach = on_attach,
+}
+vim.lsp.enable("fsautocomplete")
