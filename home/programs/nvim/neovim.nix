@@ -88,6 +88,7 @@ in {
       plenary-nvim
       harpoon2
       vim-bufsurf
+      vim-easymotion
       nvim-dbee
       vimade
       vim-mustache-handlebars

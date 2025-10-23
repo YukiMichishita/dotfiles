@@ -38,3 +38,10 @@ map("n", "<leader>dr", "<cmd>!sudo darwin-rebuild switch<CR>", { desc = "Darwin 
 
 -- save
 map("n", "<C-s>", "<cmd>update<CR>", { desc = "save" })
+
+-- EasyMotion
+map("n", "<leader>f", "<Plug>(easymotion-w)", { desc = "EasyMotion word forward" })
+map("n", "<leader>b", "<Plug>(easymotion-b)", { desc = "EasyMotion word backward" })
+map("n", "<leader>j", "<Plug>(easymotion-j)", { desc = "EasyMotion line down" })
+map("n", "<leader>k", "<Plug>(easymotion-k)", { desc = "EasyMotion line up" })
+map("n", "<leader>s", "<Plug>(easymotion-s2)", { desc = "EasyMotion 2-char search" })

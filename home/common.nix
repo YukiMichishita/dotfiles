@@ -36,7 +36,6 @@
 
     # Rust development tools
     rustup
-    rust-toolchain
 
     # Haskell development tools
     ghc
