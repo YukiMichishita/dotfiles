@@ -86,7 +86,36 @@ require("neo-tree").setup({
 })
 
 -- diffview
-require("diffview").setup()
+require("diffview").setup({
+	-- 自動起動を防ぐ設定
+	enhanced_diff_hl = false,
+	view = {
+		-- デフォルトレイアウトの設定
+		default = {
+			layout = "diff2_horizontal",
+		},
+		-- ファイル履歴のレイアウト
+		file_history = {
+			layout = "diff2_horizontal",
+		},
+	},
+	-- キーマップ設定（diffview内での操作）
+	keymaps = {
+		view = {
+			-- q で簡単に閉じられるようにする
+			["q"] = "<Cmd>DiffviewClose<CR>",
+			["<leader>q"] = "<Cmd>DiffviewClose<CR>",
+		},
+		file_panel = {
+			["q"] = "<Cmd>DiffviewClose<CR>",
+			["<leader>q"] = "<Cmd>DiffviewClose<CR>",
+		},
+		file_history_panel = {
+			["q"] = "<Cmd>DiffviewClose<CR>",
+			["<leader>q"] = "<Cmd>DiffviewClose<CR>",
+		},
+	},
+})
 
 -- telescope
 require("telescope").setup({

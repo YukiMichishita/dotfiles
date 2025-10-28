@@ -66,7 +66,6 @@ in {
       nvim-lspconfig
       mason-nvim
       lean-nvim
-      completion-nvim
       vscode-nvim
       vim-fugitive
       nvim-cmp
