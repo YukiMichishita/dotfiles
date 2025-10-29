@@ -1,7 +1,10 @@
 local map = vim.keymap.set
 
--- File management
+-- Diffview
 map("n", "<leader>df", "<cmd>DiffviewOpen<CR>", { desc = "Diffview open" })
+map("n", "<leader>dq", "<cmd>DiffviewClose<CR>", { desc = "Diffview close" })
+map("n", "<leader>dh", "<cmd>DiffviewFileHistory<CR>", { desc = "Diffview file history" })
+map("n", "<leader>dc", "<cmd>DiffviewFileHistory %<CR>", { desc = "Diffview current file history" })
 
 -- Neo-tree
 map("n", "<leader>e", "<cmd>Neotree toggle<CR>", { desc = "NeoTree toggle" })

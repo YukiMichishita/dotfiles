@@ -66,7 +66,6 @@ in {
       nvim-lspconfig
       mason-nvim
       lean-nvim
-      completion-nvim
       vscode-nvim
       vim-fugitive
       nvim-cmp
@@ -88,6 +87,7 @@ in {
       plenary-nvim
       harpoon2
       vim-bufsurf
+      vim-easymotion
       nvim-dbee
       vimade
       vim-mustache-handlebars

@@ -5,12 +5,7 @@
   dotfiles-private,
   fenix,
   ...
-}: let
-  rust-toolchain = fenix.packages.${pkgs.system}.fromToolchainFile {
-    file = ./rust-toolchain.toml;
-    sha256 = "sha256-SJwZ8g0zF2WrKDVmHrVG3pD2RGoQeo24MEXnNx5FyuI=";
-  };
-in {
+}: {
   imports = [
     ./programs/nvim/neovim.nix
     ./programs/awscli/awscli.nix
@@ -40,7 +35,7 @@ in {
     delve
 
     # Rust development tools
-    rust-toolchain
+    rustup
 
     # Haskell development tools
     ghc
