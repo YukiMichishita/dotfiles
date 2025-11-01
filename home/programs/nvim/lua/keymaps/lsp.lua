@@ -3,7 +3,12 @@ local opts = { noremap = true, silent = true }
 
 -- LSP navigation
 map("n", "<F12>", "<cmd>Telescope lsp_definitions<CR>", { noremap = true, silent = true, desc = "Go to definition" })
-map("n", "<F24>", "<cmd>Telescope lsp_implementations<CR>", { noremap = true, silent = true, desc = "Go to implementation" })
+map(
+	"n",
+	"<F24>",
+	"<cmd>Telescope lsp_implementations<CR>",
+	{ noremap = true, silent = true, desc = "Go to implementation" }
+)
 map("n", "<leader>r", "<cmd>Telescope lsp_references<CR>", { desc = "Find usages", noremap = true, silent = true })
 map("n", "<leader>h", vim.lsp.buf.hover, { desc = "LSP Hover (type/signature/docs)" })
 
@@ -25,7 +30,7 @@ map("n", "gl", function()
 	vim.diagnostic.open_float(nil, { focus = false })
 end, { desc = "Show diagnostics (float)" })
 
-map("n", "<leader>dq", function()
+map("n", "<leader>qf", function()
 	vim.diagnostic.setqflist({ open = true })
 end, { desc = "Diagnostics → Quickfix (all buffers)" })
 
@@ -38,4 +43,3 @@ end, { desc = "Diagnostics: toggle virtual text" })
 map({ "n", "v" }, "<leader>fm", function()
 	require("conform").format({ async = true, lsp_fallback = true })
 end, { desc = "Format buffer/selection (Conform)" })
-

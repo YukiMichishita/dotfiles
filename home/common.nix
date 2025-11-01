@@ -34,8 +34,16 @@
     gofumpt
     delve
 
-    # Rust development tools
-    rustup
+    # Rust development tools (using fenix)
+    (fenix.packages.${pkgs.system}.combine [
+      fenix.packages.${pkgs.system}.stable.cargo
+      fenix.packages.${pkgs.system}.stable.clippy
+      fenix.packages.${pkgs.system}.stable.rust-src
+      fenix.packages.${pkgs.system}.stable.rustc
+      fenix.packages.${pkgs.system}.stable.rustfmt
+      fenix.packages.${pkgs.system}.stable.rust-analyzer
+      fenix.packages.${pkgs.system}.targets.x86_64-unknown-uefi.stable.rust-std
+    ])
 
     # Haskell development tools
     ghc
