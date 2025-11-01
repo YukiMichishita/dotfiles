@@ -20,7 +20,12 @@ map("n", "<leader>w", "<cmd>bd<CR>", { desc = "Close buffer" })
 map("n", "<leader>W", "<cmd>bd!<CR>", { desc = "Force close buffer" })
 
 -- Terminal
-map("n", "<leader>t", ":terminal<CR>", { noremap = true, nowait = true, desc = "Open terminal" })
+map("n", "<leader>t", function()
+	vim.cmd("split")
+	vim.cmd("resize " .. math.floor(vim.o.lines / 3))
+	vim.cmd("wincmd J")
+	vim.cmd("terminal")
+end, { noremap = true, nowait = true, desc = "Open terminal in bottom split" })
 
 -- Scrolling
 map("n", "<C-y>", "2<C-y>", { noremap = true, silent = true, desc = "Scroll up (2 lines)" })

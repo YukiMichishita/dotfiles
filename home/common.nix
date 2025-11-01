@@ -14,6 +14,7 @@
     ./programs/chromium/chromium.nix
     ./programs/git/git.nix
     ./programs/zsh.nix
+    ./programs/tmux/tmux.nix
   ];
   home.stateVersion = "25.05";
   programs.home-manager.enable = true;

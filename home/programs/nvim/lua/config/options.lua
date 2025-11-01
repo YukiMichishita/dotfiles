@@ -24,6 +24,10 @@ vim.opt.shiftwidth = 4
 vim.opt.softtabstop = 4
 vim.opt.expandtab = true
 
+-- スプリットの位置
+vim.opt.splitbelow = true  -- 水平スプリットで新しいウィンドウを下に開く
+vim.opt.splitright = true  -- 垂直スプリットで新しいウィンドウを右に開く
+
 -- 補完UI
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
 
