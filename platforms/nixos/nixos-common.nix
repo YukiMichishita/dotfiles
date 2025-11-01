@@ -10,7 +10,6 @@
       ./hardware-nixos.nix
     ]
     ++ [
-      inputs.xremap.nixosModules.default
     ];
   # ブートローダー設定
   boot.loader.systemd-boot.enable = true;
@@ -90,6 +89,7 @@
     wget
     curl
     git
+    docker-compose
 
     # アイコンテーマとカーソル
     kdePackages.breeze-icons
@@ -125,14 +125,6 @@
     wayland-utils
     wl-clipboard
   ];
-
-  # ユーザー設定
-  users.users.yukimichishita = {
-    isNormalUser = true;
-    description = "Yuki Michishita";
-    extraGroups = ["networkmanager" "wheel" "input"];
-    shell = pkgs.zsh;
-  };
 
   # zshをシステムで有効化
   programs.zsh.enable = true;
@@ -171,6 +163,8 @@
 
   # Unfreeパッケージを許可
   nixpkgs.config.allowUnfree = true;
+
+  virtualisation.docker.enable = true;
 
   # kanata keyboard configuration
   services.kanata = let
@@ -252,26 +246,6 @@
       fcitx5-mozc
       fcitx5-gtk
     ];
-  };
-
-  # xremap service configuration
-  services.xremap = {
-    withWlroots = true;
-    enable = false;
-    config = {
-      keymap = [
-        {
-          name = "Firefox";
-          application = {
-            only = ["firefox"];
-          };
-          remap = {
-            "M-Shift-LEFTBRACE" = "M-PAGEUP";
-            "M-Shift-RIGHTBRACE" = "M-PAGEDOWN";
-          };
-        }
-      ];
-    };
   };
 
   system.stateVersion = "24.05";
