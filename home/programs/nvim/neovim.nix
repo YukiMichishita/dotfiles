@@ -65,6 +65,7 @@ in {
       nvim-treesitter.withAllGrammars
       nvim-lspconfig
       mason-nvim
+      copilot-lua
       lean-nvim
       vscode-nvim
       vim-fugitive
@@ -100,6 +101,7 @@ in {
       fzf-lua
       tagbar
       nvim-treesitter-context
+      sidekick-nvim
     ];
 
     extraPackages = [

@@ -166,3 +166,10 @@ vim.lsp.config.fsautocomplete = {
 	on_attach = on_attach,
 }
 vim.lsp.enable("fsautocomplete")
+
+-- Copilot
+require("copilot").setup({
+	suggestion = { enabled = false },
+	panel = { enabled = false },
+})
+vim.lsp.enable("copilot")
