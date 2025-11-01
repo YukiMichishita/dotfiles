@@ -10,7 +10,7 @@ map(
 	{ noremap = true, silent = true, desc = "Go to implementation" }
 )
 map("n", "<leader>r", "<cmd>Telescope lsp_references<CR>", { desc = "Find usages", noremap = true, silent = true })
-map("n", "<leader>h", vim.lsp.buf.hover, { desc = "LSP Hover (type/signature/docs)" })
+map("n", "<leader>lh", vim.lsp.buf.hover, { desc = "LSP Hover (type/signature/docs)" })
 
 -- LSP actions
 map("n", "<F2>", function()

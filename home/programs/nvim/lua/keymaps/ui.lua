@@ -120,7 +120,7 @@ map("n", "<leader>mk", function()
 	harpoon:list():add()
 end, { desc = "Harpoon: Add file" })
 
-map("n", "<leader>hp", function()
+map("n", "<leader>h", function()
 	harpoon.ui:toggle_quick_menu(harpoon:list())
 end, { desc = "Harpoon: Menu" })
 
@@ -129,6 +129,14 @@ for i = 1, 5 do
 	map("n", "<leader>" .. i, function()
 		harpoon:list():select(i)
 	end, { desc = "Harpoon: Go to file " .. i })
+end
+
+-- Harpoon split navigation
+for i = 1, 5 do
+	map("n", "<leader>s" .. i, function()
+		vim.cmd("split")
+		harpoon:list():select(i)
+	end, { desc = "Harpoon: Split below with file " .. i })
 end
 
 -- neo test
@@ -162,3 +170,11 @@ end, { desc = "Test: run last" })
 vim.keymap.set("n", "<leader>td", function()
 	require("neotest").run.run({ strategy = "dap" })
 end, { desc = "neotest: debug nearest" })
+
+-- Window resize
+map("n", "<A-w>", function()
+	local lines = vim.fn.input("Window height (lines): ")
+	if lines ~= "" then
+		vim.cmd("resize " .. lines)
+	end
+end, { desc = "Window: set height" })

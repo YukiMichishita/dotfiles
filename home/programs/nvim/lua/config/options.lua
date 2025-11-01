@@ -34,6 +34,10 @@ vim.opt.completeopt = { "menu", "menuone", "noselect" }
 -- タイトルを使う（値はautocmdで固定）
 vim.opt.title = true
 
+-- ステータスラインを非表示（下のバーを消す）
+vim.opt.laststatus = 0
+vim.opt.cmdheight = 1  -- コマンドラインの高さは1行維持
+
 -- netrw無効化
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1

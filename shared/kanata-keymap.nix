@@ -23,9 +23,9 @@
         (tap-hold-release 100 230 d lctl)
         (tap-hold-release  1 230 f lsft)
         g h
-        (tap-hold-release 100 230 j lsft)
-        (tap-hold-release 100 230 k lctl)
-        (tap-hold-release 100 230 l lmet)
+        (tap-hold-release 140 230 j lsft)
+        (tap-hold-release 140 230 k lctl)
+        (tap-hold-release 140 230 l lmet)
         (tap-hold-release 50 230 ; lalt)
       '
       _ z x c v b n m , . / _
