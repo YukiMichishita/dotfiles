@@ -13,6 +13,26 @@
       sha256 = "o/Uf4bnh3IctKnT50JitTe5/+BUrCyrlOOzkmwAzxLk=";
     };
   };
+  vim-wintabs = pkgs.vimUtils.buildVimPlugin {
+    pname = "vim-wintabs";
+    version = "2024-08-16";
+    src = pkgs.fetchFromGitHub {
+      owner = "zefei";
+      repo = "vim-wintabs";
+      rev = "6d18d62ae0f293a108afee8c514706027faefcf3";
+      sha256 = "0n677r3snif7rq0z3l16ig9w9vb855ghf2p89n1l0z1s9y8619k0";
+    };
+  };
+  vim-wintabs-powerline = pkgs.vimUtils.buildVimPlugin {
+    pname = "vim-wintabs-powerline";
+    version = "2020-08-27";
+    src = pkgs.fetchFromGitHub {
+      owner = "zefei";
+      repo = "vim-wintabs-powerline";
+      rev = "c6713349aa965ed32c0f6927e7121c8e04b27163";
+      sha256 = "02ylkigsz4v7gakyn8x2filgw6xir6jbnkfm6789a3mk1ilkd9f2";
+    };
+  };
   nvim-dbee = pkgs.vimUtils.buildVimPlugin {
     pname = "nvim-dbee";
     version = "0.1.9";
@@ -87,7 +107,7 @@ in {
       persisted-nvim
       plenary-nvim
       harpoon2
-      vim-bufsurf
+      # vim-bufsurf # vim-wintabsと競合するため無効化
       vim-easymotion
       nvim-dbee
       vimade
@@ -102,6 +122,9 @@ in {
       tagbar
       nvim-treesitter-context
       sidekick-nvim
+      vim-wintabs
+      vim-wintabs-powerline
+      vim-tmux-navigator
     ];
 
     extraPackages = [

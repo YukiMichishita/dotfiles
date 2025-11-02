@@ -2,7 +2,6 @@ vim.opt.termguicolors = true
 vim.opt.autoread = true
 vim.opt.number = true
 vim.opt.cursorline = true
-vim.opt.winbar = "%=%m %f"
 vim.opt.shell = "zsh"
 vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#FFD700", bold = true })
 vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold" }, {
@@ -10,7 +9,6 @@ vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold" }, {
 })
 vim.o.timeoutlen = 1500
 vim.o.ttimeoutlen = 30
-vim.o.winbar = "%f%="
 
 -- 背景透過（cmd版よりAPIのほうが速い）
 vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
@@ -27,6 +25,9 @@ vim.opt.expandtab = true
 -- スプリットの位置
 vim.opt.splitbelow = true  -- 水平スプリットで新しいウィンドウを下に開く
 vim.opt.splitright = true  -- 垂直スプリットで新しいウィンドウを右に開く
+
+-- バッファ切り替え時の動作
+vim.opt.switchbuf = "useopen"  -- 既に開いているバッファがあればそのウィンドウに移動
 
 -- 補完UI
 vim.opt.completeopt = { "menu", "menuone", "noselect" }

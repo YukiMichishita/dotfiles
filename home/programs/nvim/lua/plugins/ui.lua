@@ -26,7 +26,7 @@ require("neo-tree").setup({
 		},
 	},
 	source_selector = {
-		winbar = true,
+		winbar = false,
 		statusline = false,
 	},
 	buffers = {},
@@ -104,15 +104,12 @@ require("diffview").setup({
 		view = {
 			-- q で簡単に閉じられるようにする
 			["q"] = "<Cmd>DiffviewClose<CR>",
-			["<leader>q"] = "<Cmd>DiffviewClose<CR>",
 		},
 		file_panel = {
 			["q"] = "<Cmd>DiffviewClose<CR>",
-			["<leader>q"] = "<Cmd>DiffviewClose<CR>",
 		},
 		file_history_panel = {
 			["q"] = "<Cmd>DiffviewClose<CR>",
-			["<leader>q"] = "<Cmd>DiffviewClose<CR>",
 		},
 	},
 })
@@ -156,3 +153,21 @@ require("treesitter-context").setup({
 	mode = "cursor",
 	separator = nil,
 })
+
+-- vim-wintabs
+vim.g.wintabs_autoclose = 2 -- ウィンドウごとの最後のバッファを閉じたときの動作
+vim.g.wintabs_autoclose_vim = 1 -- Vimの最後のバッファを閉じたときにVimを終了
+vim.g.wintabs_display = "tabline" -- タブライン（画面最上部）に表示
+vim.g.wintabs_switchbuf = "" -- バッファ切り替え動作のカスタマイズ
+vim.g.wintabs_ui_show_vimtab = 0 -- Vimタブ表示を無効化
+
+-- vim-wintabs keymaps
+vim.keymap.set("n", "<C-,>", "<Plug>(wintabs_previous)", { desc = "Wintabs: Previous buffer" })
+vim.keymap.set("n", "<C-.>", "<Plug>(wintabs_next)", { desc = "Wintabs: Next buffer" })
+vim.keymap.set("n", "<C-w>o", "<Plug>(wintabs_only)", { desc = "Wintabs: Close other buffers" })
+
+-- vim-wintabs カラー設定（アクティブタブを目立たせる）
+vim.api.nvim_set_hl(0, "WintabsActive", { fg = "#FFD700", bg = "#3a3a3a", bold = true }) -- アクティブタブ: 金色、太字
+vim.api.nvim_set_hl(0, "WintabsInactive", { fg = "#808080", bg = "#1a1a1a" }) -- 非アクティブタブ: グレー
+vim.api.nvim_set_hl(0, "WintabsActiveNC", { fg = "#B8860B", bg = "#2a2a2a", bold = true }) -- アクティブタブ（非カレントウィンドウ）
+vim.api.nvim_set_hl(0, "WintabsInactiveNC", { fg = "#606060", bg = "#1a1a1a" }) -- 非アクティブタブ（非カレントウィンドウ）
