@@ -7,7 +7,12 @@ map({ "n", "v" }, "<C-h>", "<cmd>TmuxNavigateLeft<CR>", { silent = true, desc = 
 map({ "n", "v" }, "<C-j>", "<cmd>TmuxNavigateDown<CR>", { silent = true, desc = "Navigate down (tmux/vim)" })
 map({ "n", "v" }, "<C-k>", "<cmd>TmuxNavigateUp<CR>", { silent = true, desc = "Navigate up (tmux/vim)" })
 map({ "n", "v" }, "<C-l>", "<cmd>TmuxNavigateRight<CR>", { silent = true, desc = "Navigate right (tmux/vim)" })
-map({ "n", "v" }, "<C-\\>", "<cmd>TmuxNavigatePrevious<CR>", { silent = true, desc = "Navigate to previous (tmux/vim)" })
+map(
+	{ "n", "v" },
+	"<C-\\>",
+	"<cmd>TmuxNavigatePrevious<CR>",
+	{ silent = true, desc = "Navigate to previous (tmux/vim)" }
+)
 
 -- Window resizing
 map("n", "<M-h>", "<C-w>>", { desc = "Resize window left" })
@@ -17,12 +22,17 @@ map("n", "<M-k>", "<C-w>-", { desc = "Resize window up" })
 
 -- Buffer navigation
 -- vim-bufsurfを無効化したためコメントアウト
--- map("n", "<C-,>", ":BufSurfBack<CR>", { noremap = true, desc = "Buffer surf back" })
--- map("n", "<C-.>", ":BufSurfForward<CR>", { noremap = true, desc = "Buffer surf forward" })
+map("n", "<C-,>", ":BufSurfBack<CR>", { noremap = true, desc = "Buffer surf back" })
+map("n", "<C-.>", ":BufSurfForward<CR>", { noremap = true, desc = "Buffer surf forward" })
 map("n", "<leader>w", "<cmd>bd<CR>", { desc = "Close buffer" })
 map("n", "<leader>W", "<cmd>bd!<CR>", { desc = "Force close buffer" })
 map("n", "<leader>q", "<cmd>q<CR>", { desc = "Force close buffer" })
 map("n", "<leader>Q", "<cmd>q!<CR>", { desc = "Force close buffer" })
+
+-- vim-wintabs keymaps
+map("n", "<M-,>", "<cmd>WintabsPrevious<CR>", { desc = "Wintabs: Previous buffer" })
+map("n", "<M-.>", "<cmd>WintabsNext<CR>", { desc = "Wintabs: Next buffer" })
+map("n", "<C-w>o", "<Plug>(wintabs_only)", { desc = "Wintabs: Close other buffers" })
 
 -- Terminal
 map("n", "<leader>t", function()

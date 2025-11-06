@@ -15,18 +15,26 @@
       set -g base-index 1
       setw -g pane-base-index 1
 
+      set -sg escape-time 10
+      set -g default-terminal "tmux-256color"
+
+      # プレフィックス + r で .tmux.confを再読込
+      bind-key r source-file ~/.config/tmux/tmux.conf \; \
+      display-message "source-file done"
+
       # ウィンドウ番号を自動で振り直す
       set -g renumber-windows on
 
       # ステータスバーの更新間隔
       set -g status-interval 1
 
-      # ペイン分割のキーバインド（現在のディレクトリを引き継ぐ）
-      bind | split-window -h -c "#{pane_current_path}"
-      bind - split-window -v -c "#{pane_current_path}"
-
       # 新しいウィンドウも現在のディレクトリを引き継ぐ
       bind c new-window -c "#{pane_current_path}"
+      bind '"' split-window -v -c '#{pane_current_path}'
+      bind % split-window -h -c '#{pane_current_path}'
+
+      set -g pane-border-style 'fg=colour240'
+      set -g pane-active-border-style 'fg=colour245'
 
       # vim-tmux-navigator: VimとTmuxのシームレスな移動
       # Ctrl-h/j/k/lでVimウィンドウとTmuxペインを横断
@@ -42,7 +50,7 @@
       bind-key -T copy-mode-vi 'C-k' select-pane -U
       bind-key -T copy-mode-vi 'C-l' select-pane -R
 
-      # プレフィックスキー + h/j/k/lでペイン移動（従来通り）
+      # プレフィックスキー + h/j/k/lでペイン移動
       bind h select-pane -L
       bind j select-pane -D
       bind k select-pane -U

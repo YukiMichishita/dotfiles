@@ -161,11 +161,6 @@ vim.g.wintabs_display = "tabline" -- タブライン（画面最上部）に表�
 vim.g.wintabs_switchbuf = "" -- バッファ切り替え動作のカスタマイズ
 vim.g.wintabs_ui_show_vimtab = 0 -- Vimタブ表示を無効化
 
--- vim-wintabs keymaps
-vim.keymap.set("n", "<C-,>", "<Plug>(wintabs_previous)", { desc = "Wintabs: Previous buffer" })
-vim.keymap.set("n", "<C-.>", "<Plug>(wintabs_next)", { desc = "Wintabs: Next buffer" })
-vim.keymap.set("n", "<C-w>o", "<Plug>(wintabs_only)", { desc = "Wintabs: Close other buffers" })
-
 -- vim-wintabs カラー設定（アクティブタブを目立たせる）
 vim.api.nvim_set_hl(0, "WintabsActive", { fg = "#FFD700", bg = "#3a3a3a", bold = true }) -- アクティブタブ: 金色、太字
 vim.api.nvim_set_hl(0, "WintabsInactive", { fg = "#808080", bg = "#1a1a1a" }) -- 非アクティブタブ: グレー
