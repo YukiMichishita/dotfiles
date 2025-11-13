@@ -6,9 +6,6 @@
     keyMode = "vi";
     mouse = true;
 
-    # Prefix key (デフォルトはCtrl-b)
-    prefix = "C-b";
-
     # 基本設定
     extraConfig = ''
       # ウィンドウ番号を1から始める
@@ -66,10 +63,23 @@
       bind-key -T copy-mode-vi v send-keys -X begin-selection
       bind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel
 
+      # ウィンドウ名を自動で更新（ディレクトリ名 + gitブランチ）
+      set-option -g automatic-rename on
+      set-option -g automatic-rename-format '#{b:pane_current_path}'
+
+      # ペイン選択時にディレクトリ名とgitブランチ名を表示
+      set-hook -g after-select-pane 'run-shell "cd #{pane_current_path} && branch=\$(git branch --show-current 2>/dev/null) && dir=\$(basename \$(pwd)) && if [ -n \"\$branch\" ]; then tmux rename-window \"\$dir [\$branch]\"; else tmux rename-window \"\$dir\"; fi"'
+      set-hook -g pane-focus-in 'run-shell "cd #{pane_current_path} && branch=\$(git branch --show-current 2>/dev/null) && dir=\$(basename \$(pwd)) && if [ -n \"\$branch\" ]; then tmux rename-window \"\$dir [\$branch]\"; else tmux rename-window \"\$dir\"; fi"'
+
       # ステータスバーのカラー設定
       set -g status-style bg=black,fg=white
       set -g status-left "[#S] "
       set -g status-right "%Y-%m-%d %H:%M:%S"
+
+      # ウィンドウリストの設定
+      set -g window-status-style fg=colour245,bg=black
+      set -g window-status-current-style fg=yellow,bold,bg=black
+      set -g window-status-separator " | "
     '';
   };
 }

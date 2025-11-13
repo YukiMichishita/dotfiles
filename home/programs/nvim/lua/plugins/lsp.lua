@@ -64,7 +64,15 @@ vim.lsp.enable("pyright")
 vim.lsp.config.clangd = {
 	cmd = { "clangd" },
 	filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
-	root_markers = { ".clangd", ".clang-tidy", ".clang-format", "compile_commands.json", "compile_flags.txt", "configure.ac", ".git" },
+	root_markers = {
+		".clangd",
+		".clang-tidy",
+		".clang-format",
+		"compile_commands.json",
+		"compile_flags.txt",
+		"configure.ac",
+		".git",
+	},
 	capabilities = capabilities,
 	on_attach = on_attach,
 }
@@ -120,7 +128,16 @@ vim.lsp.enable("nil_ls")
 vim.lsp.config.lua_ls = {
 	cmd = { "lua-language-server" },
 	filetypes = { "lua" },
-	root_markers = { ".luarc.json", ".luarc.jsonc", ".luacheckrc", ".stylua.toml", "stylua.toml", "selene.toml", "selene.yml", ".git" },
+	root_markers = {
+		".luarc.json",
+		".luarc.jsonc",
+		".luacheckrc",
+		".stylua.toml",
+		"stylua.toml",
+		"selene.toml",
+		"selene.yml",
+		".git",
+	},
 	capabilities = capabilities,
 	settings = {
 		Lua = {
@@ -169,7 +186,9 @@ vim.lsp.enable("fsautocomplete")
 
 -- Copilot
 require("copilot").setup({
-	suggestion = { enabled = false },
-	panel = { enabled = false },
+	suggestion = { enabled = true, auto_trigger = true, keymap = { accept = "<m-l>" } },
+	filetypes = {
+		gitcommit = true,
+	},
 })
 vim.lsp.enable("copilot")
