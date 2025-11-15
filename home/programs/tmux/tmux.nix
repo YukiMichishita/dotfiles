@@ -25,8 +25,8 @@
       # ステータスバーの更新間隔
       set -g status-interval 1
 
-      # 新しいウィンドウも現在のディレクトリを引き継ぐ
-      bind c new-window -c "#{pane_current_path}"
+      # ペイン分割時のみ現在のディレクトリを引き継ぐ
+      bind c new-window
       bind '"' split-window -v -c '#{pane_current_path}'
       bind % split-window -h -c '#{pane_current_path}'
 
