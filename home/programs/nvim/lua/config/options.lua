@@ -43,6 +43,9 @@ vim.opt.cmdheight = 1  -- コマンドラインの高さは1行維持
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
+-- EasyMotion: デフォルトマッピングを無効化（カスタムマッピングのみ使用）
+vim.g.EasyMotion_do_mapping = 0
+
 -- fold/unfold
 vim.o.foldcolumn = "1" -- 左に折りたたみガイドを表示
 vim.o.foldlevel = 99

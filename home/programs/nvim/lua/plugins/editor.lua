@@ -2,7 +2,14 @@
 require("nvim-treesitter.configs").setup({
 	highlight = { enable = true },
 	indent = { enable = true },
-	incremental_selection = { enable = true },
+	incremental_selection = {
+		enable = true,
+		keymaps = {
+			init_selection = "gnn",
+			node_incremental = "grn",
+			scope_incremental = "grc",
+		},
+	},
 })
 
 -- ufo
@@ -35,9 +42,6 @@ require("spectre").setup({})
 -- scrollbar
 require("scrollbar").setup({
 	show = true,
-	-- 気になるなら幅やハイライトをここで調整可能
-	-- handle = { color = "#3b4252" },
-	-- marks で診断の色を好みに合わせて上書きできる
 })
 require("scrollbar.handlers.search").setup()
 pcall(function()
@@ -116,3 +120,8 @@ require("neotest").setup({
 	}),
 })
 
+require("ssr").setup({
+	border = "rounded",
+	min_width = 200,
+	min_height = 80,
+})

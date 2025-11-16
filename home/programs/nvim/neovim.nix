@@ -69,7 +69,6 @@ in {
     plugins = with pkgs.vimPlugins; [
       neo-tree-nvim
       nvim-web-devicons
-      nvim-web-devicons
       diffview-nvim
       telescope-nvim
       telescope-ui-select-nvim
@@ -121,10 +120,12 @@ in {
       fzf-lua
       tagbar
       nvim-treesitter-context
+      nvim-treesitter-textobjects
       sidekick-nvim
       vim-wintabs
       vim-wintabs-powerline
       vim-tmux-navigator
+      ssr
     ];
 
     extraPackages = [
