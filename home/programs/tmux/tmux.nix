@@ -68,8 +68,8 @@
       set-option -g automatic-rename-format '#{b:pane_current_path}'
 
       # ペイン選択時にディレクトリ名とgitブランチ名を表示
-      set-hook -g after-select-pane 'run-shell "cd #{pane_current_path} && branch=\$(git branch --show-current 2>/dev/null) && dir=\$(basename \$(pwd)) && if [ -n \"\$branch\" ]; then tmux rename-window \"\$dir [\$branch]\"; else tmux rename-window \"\$dir\"; fi"'
-      set-hook -g pane-focus-in 'run-shell "cd #{pane_current_path} && branch=\$(git branch --show-current 2>/dev/null) && dir=\$(basename \$(pwd)) && if [ -n \"\$branch\" ]; then tmux rename-window \"\$dir [\$branch]\"; else tmux rename-window \"\$dir\"; fi"'
+      set-hook -g after-select-pane 'run-shell "cd #{pane_current_path} && branch=\$(git branch --show-current 2>/dev/null || echo \"\") && dir=\$(basename \$(pwd)) && if [ -n \"\$branch\" ]; then tmux rename-window \"\$dir [\$branch]\"; else tmux rename-window \"\$dir\"; fi"'
+      set-hook -g pane-focus-in 'run-shell "cd #{pane_current_path} && branch=\$(git branch --show-current 2>/dev/null || echo \"\") && dir=\$(basename \$(pwd)) && if [ -n \"\$branch\" ]; then tmux rename-window \"\$dir [\$branch]\"; else tmux rename-window \"\$dir\"; fi"'
 
       # ステータスバーのカラー設定
       set -g status-style bg=black,fg=white
