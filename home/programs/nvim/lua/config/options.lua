@@ -47,7 +47,7 @@ vim.g.loaded_netrwPlugin = 1
 vim.g.EasyMotion_do_mapping = 0
 
 -- fold/unfold
-vim.o.foldcolumn = "1" -- 左に折りたたみガイドを表示
+vim.o.foldcolumn = "0" -- 左に折りたたみガイドを表示
 vim.o.foldlevel = 99
 vim.o.foldlevelstart = 99
 vim.o.foldenable = true

@@ -25,3 +25,12 @@ require("harpoon").setup()
 -- dbee
 require("dbee").setup({})
 
+-- swagger-preview
+require("swagger-preview").setup({
+	port = 8000,
+	host = "localhost",
+})
+
+-- render-markdown
+require("render-markdown").setup({})
+

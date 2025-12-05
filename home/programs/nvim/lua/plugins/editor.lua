@@ -33,6 +33,7 @@ require("ufo").setup({
 		return { "indent" }
 	end,
 })
+vim.o.foldcolumn = "0" -- ufoがfoldcolumnを設定するので、ここで無効化
 
 -- spectre
 require("gitsigns").setup({})

@@ -61,6 +61,22 @@
       pkgs.duckdb
     ];
   };
+  swagger-preview-nvim = pkgs.buildNpmPackage {
+    pname = "swagger-preview-nvim";
+    version = "2024-12-04";
+    src = pkgs.fetchFromGitHub {
+      owner = "vinnymeller";
+      repo = "swagger-preview.nvim";
+      rev = "42999dd6ad0bbb3e6ca5e857f3fc3c12de014110";
+      sha256 = "sha256-0PmasvfQKBKtqYOoY/CCqVMuku2zSeex3qGK8KVqPE0=";
+    };
+    npmDepsHash = "sha256-y0GmMTbpfxkVrc7OGj+wUWOjtITMBDmgMlfMZ4DagVc=";
+    dontNpmBuild = true;
+    installPhase = ''
+      mkdir -p $out
+      cp -r . $out/
+    '';
+  };
 in {
   programs.neovim = {
     enable = true;
@@ -126,6 +142,8 @@ in {
       vim-wintabs-powerline
       vim-tmux-navigator
       ssr
+      swagger-preview-nvim
+      render-markdown-nvim
     ];
 
     extraPackages = [
@@ -139,6 +157,7 @@ in {
       pkgs.fsautocomplete # F# LSP
       dbee-backend
       pkgs.ctags
+      pkgs.nodejs
     ];
   };
 
