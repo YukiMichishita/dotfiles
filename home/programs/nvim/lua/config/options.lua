@@ -35,9 +35,20 @@ vim.opt.completeopt = { "menu", "menuone", "noselect" }
 -- タイトルを使う（値はautocmdで固定）
 vim.opt.title = true
 
--- ステータスラインを非表示（下のバーを消す）
-vim.opt.laststatus = 0
+-- ステータスライン設定
+vim.opt.laststatus = 2  -- 常にステータスラインを表示
 vim.opt.cmdheight = 1  -- コマンドラインの高さは1行維持
+
+-- ステータスラインにフルパスを表示
+vim.opt.statusline = "%F%m%r%h%w%=%l,%c %p%%"
+-- %F = フルパス
+-- %m = 変更フラグ [+]
+-- %r = 読み取り専用フラグ [RO]
+-- %h = ヘルプバッファフラグ
+-- %w = プレビューウィンドウフラグ
+-- %= = 左右の区切り
+-- %l,%c = 行,列番号
+-- %p%% = ファイル内の位置（パーセント）
 
 -- netrw無効化
 vim.g.loaded_netrw = 1

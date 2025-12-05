@@ -154,6 +154,16 @@ vim.lsp.config.lua_ls = {
 }
 vim.lsp.enable("lua_ls")
 
+-- TypeScript/JavaScript
+vim.lsp.config.ts_ls = {
+	cmd = { "typescript-language-server", "--stdio" },
+	filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+	root_markers = { "package.json", "tsconfig.json", "jsconfig.json", ".git" },
+	capabilities = capabilities,
+	on_attach = on_attach,
+}
+vim.lsp.enable("ts_ls")
+
 -- Java
 vim.lsp.config.jdtls = {
 	cmd = { "jdtls" },

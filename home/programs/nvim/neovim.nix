@@ -155,6 +155,7 @@ in {
       pkgs.jdt-language-server
       pkgs.haskell-language-server # Haskell LSP
       pkgs.fsautocomplete # F# LSP
+      pkgs.nodePackages.typescript-language-server # TypeScript/JavaScript LSP
       dbee-backend
       pkgs.ctags
       pkgs.nodejs
