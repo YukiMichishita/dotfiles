@@ -66,4 +66,3 @@ set cursorline
 
 set hidden
 
-set scrolloff=5

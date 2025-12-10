@@ -194,6 +194,16 @@ vim.lsp.config.fsautocomplete = {
 }
 vim.lsp.enable("fsautocomplete")
 
+-- Terraform
+vim.lsp.config.terraformls = {
+	cmd = { "terraform-ls", "serve" },
+	filetypes = { "terraform", "terraform-vars" },
+	root_markers = { ".terraform", "terraform.tfvars", ".git" },
+	capabilities = capabilities,
+	on_attach = on_attach,
+}
+vim.lsp.enable("terraformls")
+
 -- Copilot
 require("copilot").setup({
 	suggestion = { enabled = true, auto_trigger = true, keymap = { accept = "<m-l>" } },

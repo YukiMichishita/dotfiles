@@ -147,6 +147,7 @@ in {
     ];
 
     extraPackages = [
+      pkgs.fd # Telescope用の高速ファイル検索
       pkgs.pyright
       pkgs.gopls
       pkgs.sqls
@@ -156,6 +157,7 @@ in {
       pkgs.haskell-language-server # Haskell LSP
       pkgs.fsautocomplete # F# LSP
       pkgs.nodePackages.typescript-language-server # TypeScript/JavaScript LSP
+      pkgs.terraform-ls # Terraform LSP
       dbee-backend
       pkgs.ctags
       pkgs.nodejs
