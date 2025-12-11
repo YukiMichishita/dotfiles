@@ -23,8 +23,8 @@ map(
 
 -- fzf
 map("n", "<leader><C-p>", function()
-	require("fzf-lua").builtin()
-end, { desc = "Command palette (fzf-lua builtin)" })
+	require("fzf-lua").commands()
+end, { desc = "Command palette (fzf-lua commands)" })
 
 -- Git blame
 map("n", "<leader>gb", ":Git blame<CR>", { desc = "Git: blame file" })
