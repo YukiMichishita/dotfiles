@@ -24,6 +24,18 @@ require("neo-tree").setup({
 			hide_dotfiles = false,
 			hide_gitignored = false,
 		},
+		commands = {
+			system_open = function(state)
+				local node = state.tree:get_node()
+				local path = node:get_id()
+				vim.ui.open(path)
+			end,
+		},
+		window = {
+			mappings = {
+				["o"] = "system_open",
+			},
+		},
 	},
 	source_selector = {
 		winbar = false,
