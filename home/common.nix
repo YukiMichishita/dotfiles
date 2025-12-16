@@ -19,6 +19,12 @@
   home.stateVersion = "25.05";
   programs.home-manager.enable = true;
 
+  # direnv
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+  };
+
   home.packages = with pkgs; [
     gcc
     gnumake
