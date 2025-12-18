@@ -186,7 +186,7 @@ vim.lsp.enable("haskell_language_server")
 
 -- F#
 vim.lsp.config.fsautocomplete = {
-	cmd = { "fsautocomplete", "--background-service-enabled" },
+	cmd = { "fsautocomplete" },
 	filetypes = { "fsharp" },
 	root_markers = { "*.sln", "*.fsproj", ".git" },
 	capabilities = capabilities,

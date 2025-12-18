@@ -18,6 +18,7 @@
   ];
   home.stateVersion = "25.05";
   programs.home-manager.enable = true;
+  programs.codex.enable = true;
 
   home.packages = with pkgs; [
     gcc
